@@ -1,4 +1,4 @@
-package com.fiap.orquestrador_only_videos.adapter.broker.config;
+package com.fiap.orquestrador_only_videos.core.config;
 
 import org.springframework.cloud.aws.messaging.config.annotation.EnableSqs;
 import org.springframework.context.annotation.Bean;

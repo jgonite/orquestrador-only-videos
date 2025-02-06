@@ -1,4 +1,4 @@
-package com.fiap.orquestrador_only_videos.adapter.broker.config;
+package com.fiap.orquestrador_only_videos.core.config;
 
 import javax.sql.DataSource;
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fiap.orquestrador_only_videos.domain.exception.AutenticacaoException;
 import com.fiap.orquestrador_only_videos.domain.exception.IniciarException;
 import com.fiap.orquestrador_only_videos.domain.exception.ProcessarException;
+import com.fiap.orquestrador_only_videos.domain.model.AuthenticationResponseDTO;
 import com.fiap.orquestrador_only_videos.domain.model.PostVideoRequestModel;
 import com.fiap.orquestrador_only_videos.domain.model.PostVideoResponseModel;
 import com.fiap.orquestrador_only_videos.domain.model.SolicitacaoUploadModel;
@@ -20,7 +21,7 @@ import com.fiap.orquestrador_only_videos.domain.service.AutenticacaoService;
 import com.fiap.orquestrador_only_videos.domain.service.ProcessarUploadService;
 import com.fiap.orquestrador_only_videos.domain.service.SolicitacaoUploadService;
 
-@RestController("/api/v1/upload")
+@RestController("/api/upload")
 public class OnlyVideosController {
 	
 	
@@ -35,9 +36,9 @@ public class OnlyVideosController {
 		
 		PostVideoResponseModel response = new PostVideoResponseModel();
 		try {
-			autenticacaoService.autenticar(headers);
+			AuthenticationResponseDTO tokens = autenticacaoService.autenticar(headers);
 			SolicitacaoUploadModel solicitacao = solicitacaoUploadService.iniciar();
-			processarUploadService.processa(solicitacao);
+			processarUploadService.processa(solicitacao, tokens);
 			
 			response.setUuid(solicitacao.getUuid());
 		} catch (AutenticacaoException ae) {

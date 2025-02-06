@@ -13,4 +13,5 @@ public class SolicitacaoUploadModel {
 	public UploadStatus status;
 	public LinkModel link;
 	
+	
 }
